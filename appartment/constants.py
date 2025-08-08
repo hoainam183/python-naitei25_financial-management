@@ -79,3 +79,20 @@ class ElectricWaterStatus(Enum):
     @classmethod
     def choices(cls):
         return [(key.value, key.name.replace("_", " ").title()) for key in cls]
+
+
+MIN_OCCUPANTS = 1
+MAX_OCCUPANTS = 50
+
+PRICE_CHANGES_PER_PAGE_MAX = 5
+HISTORY_PER_PAGE_MAX = 5
+
+
+class UserRole(Enum):
+    ADMIN = "ROLE_ADMIN"
+    APARTMENT_MANAGER = "ROLE_APARTMENT_MANAGER"
+    RESIDENT = "ROLE_RESIDENT"
+
+    @classmethod
+    def choices(cls):
+        return [(role.value, role.name.replace("_", " ").title()) for role in cls]
