@@ -48,6 +48,7 @@ class RoomStatus(Enum):
     AVAILABLE = "available"
     OCCUPIED = "occupied"
     MAINTENANCE = "maintenance"
+    UNAVAILABLE = "unavailable"  # Thêm dòng này
 
     @classmethod
     def choices(cls):
@@ -107,3 +108,9 @@ class PaginateNumber(Enum):
     @classmethod
     def choices(cls):
         return [(key.value, key.name.replace("_", " ").title()) for key in cls]
+
+
+DAY_MONTH_YEAR_FORMAT = "%d/%m/%Y"
+MONTH_YEAR_FORMAT = "%m/%Y"
+
+DEFAULT_PAGE_SIZE = 10
