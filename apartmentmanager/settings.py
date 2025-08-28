@@ -35,11 +35,13 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 BASE_URL = os.getenv("BASE_URL")
 
 PAYOS_RETURN_URL = os.getenv(
-    "PAYOS_RETURN_URL", f"{BASE_URL}/appartment/resident/bank_payment/transact_success/"
+    "PAYOS_RETURN_URL",
+    f"{BASE_URL}/appartment/resident/bank_payment/transact_success/",
 )
 
 PAYOS_CANCEL_URL = os.getenv(
-    "PAYOS_CANCEL_URL", f"{BASE_URL}/appartment/resident/bank_payment/transact_success/"
+    "PAYOS_CANCEL_URL",
+    f"{BASE_URL}/appartment/resident/bank_payment/transact_success/",
 )
 
 PAYOS = PayOS(
@@ -65,6 +67,7 @@ INSTALLED_APPS = [
     "appartment.apps.AppartmentConfig",
     "tailwind",
     "theme",
+    "django_crontab",
 ]
 
 TAILWIND_APP_NAME = "theme"
@@ -108,7 +111,9 @@ WSGI_APPLICATION = "apartmentmanager.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": os.environ.get("DB_DATABASE"),  # Tên database đã tạo trong MySQL
+        "NAME": os.environ.get(
+            "DB_DATABASE"
+        ),  # Tên database đã tạo trong MySQL
         "USER": os.environ.get("DB_USERNAME"),  # Ví dụ: 'root'
         "PASSWORD": os.environ.get("DB_PASSWORD"),
         "HOST": os.environ.get(
@@ -188,3 +193,16 @@ AUTH_USER_MODEL = "appartment.User"
 LOGIN_URL = "login"
 
 APPEND_SLASH = True
+
+# config email
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True") == "True"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+# setup cron
+CRONJOBS = [
+    ("5 5 * * *", "appartment.tasks.send_bills.send_monthly_bills"),
+]
