@@ -133,6 +133,7 @@ class PaginateNumber(Enum):
 DAY_MONTH_YEAR_FORMAT = "%d/%m/%Y"
 MONTH_YEAR_FORMAT = "%m/%Y"
 DATE_TIME_FORMAT = "%d/%m/%Y %H:%M"
+YEAR_MONTH_DAY_FORMAT = "%Y-%m-%d"
 
 STATUS_CHOICES = [
     ("True", "Active"),
@@ -142,4 +143,4 @@ DEFAULT_PAGE_SIZE = 10
 
 MIN_RENTAL_PRICE = 0
 
-BILL_SEND_DAYS = [25, 26, 27, 28, 29]
+BILL_SEND_DAYS = [25, 26, 27, 28, 29, 30, 31]

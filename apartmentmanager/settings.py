@@ -111,9 +111,7 @@ WSGI_APPLICATION = "apartmentmanager.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": os.environ.get(
-            "DB_DATABASE"
-        ),  # Tên database đã tạo trong MySQL
+        "NAME": os.environ.get("DB_DATABASE"),  # Tên database đã tạo trong MySQL
         "USER": os.environ.get("DB_USERNAME"),  # Ví dụ: 'root'
         "PASSWORD": os.environ.get("DB_PASSWORD"),
         "HOST": os.environ.get(
@@ -204,5 +202,5 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 # setup cron
 CRONJOBS = [
-    ("5 5 * * *", "appartment.tasks.send_bills.send_monthly_bills"),
+    ("25 15 * * *", "appartment.tasks.send_bills.send_monthly_bills"),
 ]
